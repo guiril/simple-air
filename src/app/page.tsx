@@ -1,113 +1,230 @@
-import Image from 'next/image'
+import Image from 'next/image';
+
+import Header from '@/components/header';
+import SearchBar from '@/components/search-bar';
+import HomeSection from '@/layouts/home-section';
+import LargeCard from '@/components/large-card';
+import AirlinesTab from '@/components/airlinesTab';
+import Footer from '@/layouts/footer';
+
+const asiaItems = [
+  {
+    labelText: '直飛',
+    imgTitle: 'asia/bangkok',
+    remaingNumber: 3,
+    location: '曼谷 . 泰國',
+    price: '6,638'
+  },
+  {
+    labelText: '超夯',
+    imgTitle: 'asia/ho-chi-minh-city',
+    remaingNumber: null,
+    location: '胡志明市 . 越南',
+    price: '8,830'
+  },
+  {
+    labelText: '直飛',
+    imgTitle: 'asia/osaka',
+    remaingNumber: 6,
+    location: '大阪 . 日本',
+    price: '13,634'
+  }
+];
+
+const europeItems = [
+  {
+    labelText: null,
+    imgTitle: 'europe/rome',
+    remaingNumber: null,
+    location: '羅馬 . 義大利',
+    price: '40,801'
+  },
+  {
+    labelText: null,
+    imgTitle: 'europe/prague',
+    remaingNumber: null,
+    location: '布拉格 . 捷克',
+    price: '36,868'
+  },
+  {
+    labelText: '超夯',
+    imgTitle: 'europe/paris',
+    remaingNumber: null,
+    location: '巴黎 . 法國',
+    price: '39,895'
+  }
+];
+
+const ItinerariesCards = () => {
+  const itineraries = [
+    {
+      imgTitle: 'osaka',
+      fromPlace: '台北',
+      toPlace: '大阪',
+      period: '8月30日 (三) - 9月6日 (三)',
+      cabin: '經濟艙',
+      price: '14,537'
+    },
+    {
+      imgTitle: 'tokyo',
+      fromPlace: '台北',
+      toPlace: '東京',
+      period: '8月30日 (三) - 9月6日 (三)',
+      cabin: '經濟艙',
+      price: '16,538'
+    },
+    {
+      imgTitle: 'bangkok',
+      fromPlace: '台北',
+      toPlace: '曼谷',
+      period: '8月30日 (三) - 9月6日 (三)',
+      cabin: '經濟艙',
+      price: '10,144'
+    },
+    {
+      imgTitle: 'macow',
+      fromPlace: '台北',
+      toPlace: '澳門',
+      period: '8月30日 (三) - 9月6日 (三)',
+      cabin: '經濟艙',
+      price: '5,949'
+    }
+  ];
+  return itineraries.map((itinerary, index) => {
+    return (
+      <li
+        key={itinerary.imgTitle}
+        className={`flex flex-col py-[15px] px-4 bg-neutrail-0 border border-neutral-700/[.12] sm:mb-4 sm:last:mb-0 rounded-xl ${
+          index === 2 || index === 3 ? 'md:hidden sm:flex' : ''
+        }`}
+      >
+        <div className="mb-4 flex items-center">
+          <Image
+            src={`/images/airlines/${itinerary.imgTitle}.webp`}
+            alt={itinerary.imgTitle}
+            width={64}
+            height={64}
+            className="mr-3 rounded lg:shrink"
+          />
+          <div className="flex flex-col">
+            <div className="flex items-center mb-2 text-p-md-sb text-neutral-700">
+              <span>{itinerary.fromPlace}</span>
+              <Image
+                src={'/images/icons/round-arrow.svg'}
+                alt={'round trip arrow'}
+                width={20}
+                height={20}
+                className="mx-2"
+              />
+              <span>{itinerary.toPlace}</span>
+            </div>
+            <span className="mb-1 text-p-xs text-neutral-500">
+              {itinerary.period}
+            </span>
+            <span className="text-p-xs text-neutral-500 sm:hidden">
+              {itinerary.cabin}
+            </span>
+          </div>
+        </div>
+        <div className="self-end">
+          <span className="mr-2 text-p-xs text-neutral-500 sm:hidden">
+            來回票價
+          </span>
+          <span className="text-p-md-sb text-primary-500">
+            NT${itinerary.price}
+          </span>
+        </div>
+      </li>
+    );
+  });
+};
 
 export default function Home() {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <div className="z-10 w-full max-w-5xl items-center justify-between font-mono text-sm lg:flex">
-        <p className="fixed left-0 top-0 flex w-full justify-center border-b border-gray-300 bg-gradient-to-b from-zinc-200 pb-6 pt-8 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:static lg:w-auto  lg:rounded-xl lg:border lg:bg-gray-200 lg:p-4 lg:dark:bg-zinc-800/30">
-          Get started by editing&nbsp;
-          <code className="font-mono font-bold">src/app/page.tsx</code>
-        </p>
-        <div className="fixed bottom-0 left-0 flex h-48 w-full items-end justify-center bg-gradient-to-t from-white via-white dark:from-black dark:via-black lg:static lg:h-auto lg:w-auto lg:bg-none">
-          <a
-            className="pointer-events-none flex place-items-center gap-2 p-8 lg:pointer-events-auto lg:p-0"
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{' '}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className="dark:invert"
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
+    <>
+      <div
+        className="pb-[44px] bg-[url(/images/hero/bg-lg.webp)] bg-no-repeat bg-cover bg-center
+          md:pb-[40px]"
+      >
+        <div className="container h-full flex flex-col">
+          <Header />
+          <div className="grow pt-[120px] md:pt-[200px] sm:pt-[80px]">
+            <div className="mb-[214px] text-center md:mb-[228px] sm:mb-[24px]">
+              <h1 className="mb-2 text-h1 text-neutral-0">
+                探索世界，尋找最佳航班
+              </h1>
+              <p className="text-title-md text-neutral-200 sm:hidden">
+                輕鬆輸入、快速比價 ─ 掌握最划算的航空選擇
+              </p>
+            </div>
+            <SearchBar />
+          </div>
         </div>
       </div>
-
-      <div className="relative flex place-items-center before:absolute before:h-[300px] before:w-[480px] before:-translate-x-1/2 before:rounded-full before:bg-gradient-radial before:from-white before:to-transparent before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[180px] after:w-[240px] after:translate-x-1/3 after:bg-gradient-conic after:from-sky-200 after:via-blue-200 after:blur-2xl after:content-[''] before:dark:bg-gradient-to-br before:dark:from-transparent before:dark:to-blue-700 before:dark:opacity-10 after:dark:from-sky-900 after:dark:via-[#0141ff] after:dark:opacity-40 before:lg:h-[360px]">
-        <Image
-          className="relative dark:drop-shadow-[0_0_0.3rem_#ffffff70] dark:invert"
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
+      <HomeSection
+        smallTitle={'獨家限量'}
+        title={'精選熱門亞洲城市 超值來回機票'}
+        description={'只有在 Simple Air 才能買到的限量來回機票，數量有限！'}
+        isMoreButton={true}
+      >
+        <LargeCard items={asiaItems} />
+      </HomeSection>
+      <HomeSection
+        smallTitle={'全網最齊全'}
+        title={'全球熱門國際航線 通通都在這'}
+        description={'提供最多航空公司航線、最划算的價格、最齊全的航班資訊！'}
+        isMoreButton={true}
+      >
+        <LargeCard items={europeItems} />
+      </HomeSection>
+      <div className="container py-10 sm:bg-neutral-100 sm:py-9">
+        <div
+          className="py-10 px-12 flex justify-between items-center bg-neutral-100 rounded-xl
+            sm:flex-col sm:p-0"
+        >
+          <div className="sm:mb-12">
+            <h3 className="mb-2 text-h3 text-neutral-700">
+              首次購票，最高享 <span className="text-primary-700">9折</span>{' '}
+              優惠
+            </h3>
+            <p className="text-p-md-body text-neutral-700/60">
+              首次使用 Simple Air 購票，立即享最高 9 折優惠！
+              <br className="sm:hidden" />
+              結帳時系統直接折價，省去貼上折扣碼的麻煩。
+            </p>
+          </div>
+          <div className="sm:w-full sm:flex sm:flex-col">
+            <button
+              type="button"
+              className="py-[13px] px-[23px] mr-4 text-p-md-sb leading-[1.5em]
+                text-neutral-600 border border-neutral-700/[.12] rounded-lg sm:mr-0 sm:mb-3"
+            >
+              優惠說明
+            </button>
+            <button
+              type="button"
+              className="py-[13px] px-[23px] text-p-md-sb leading-[1.5em]
+              text-neutral-0 bg-primary-700 border border-primary-700 rounded-lg"
+            >
+              立即搜尋
+            </button>
+          </div>
+        </div>
       </div>
-
-      <div className="mb-32 grid text-center lg:mb-0 lg:grid-cols-4 lg:text-left">
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Docs{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Find in-depth information about Next.js features and API.
-          </p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Learn{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Learn about Next.js in an interactive course with&nbsp;quizzes!
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Templates{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Explore the Next.js 13 playground.
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Deploy{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
-    </main>
-  )
+      <HomeSection
+        smallTitle={'航空自由選'}
+        title={'航空公司最新優惠 即時同步'}
+        description={'各家航空推出的優惠機票，在 Simple Air 在也可以搶得到！'}
+        isMoreButton={false}
+      >
+        <ul className="flex items-center mb-6 flex-nowrap overflow-x-auto [&::-webkit-scrollbar]:hidden sm:hidden">
+          <AirlinesTab />
+        </ul>
+        <ul className="grid grid-cols-4 gap-4 md:grid-cols-2 sm:block">
+          <ItinerariesCards />
+        </ul>
+      </HomeSection>
+      <Footer />
+    </>
+  );
 }
