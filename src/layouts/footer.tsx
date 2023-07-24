@@ -1,4 +1,7 @@
+'use client';
+
 import Image from 'next/image';
+import { stopHashHrefNavigation } from '@/utils';
 
 interface SectionTitleProps {
   title: string;
@@ -29,7 +32,11 @@ const LinksList = ({ links }: LinksListProps) => {
   const list = links.map((link) => {
     return (
       <li key={link.title}>
-        <a href={link.link} className="block py-2">
+        <a
+          href={link.link}
+          className="block py-2"
+          onClick={stopHashHrefNavigation}
+        >
           {link.title}
         </a>
       </li>
@@ -46,6 +53,7 @@ const SocialMediaList = ({ socialMediaItems }: SocialMediaListProps) => {
         <a
           href="#"
           className="block p-[11px] border-[0.6px] border-neutral-400 rounded-full"
+          onClick={stopHashHrefNavigation}
         >
           <Image
             src={`/images/social-media/${item.title}.svg`}
@@ -151,20 +159,24 @@ export default function Footer() {
               <SectionTitle title={'應用程式'} />
               <ul className="flex">
                 <li className="mr-5 sm:mr-6">
-                  <Image
-                    src={'/images/application/app-store.svg'}
-                    alt={'app store'}
-                    width={116}
-                    height={40}
-                  />
+                  <a href="#" onClick={stopHashHrefNavigation}>
+                    <Image
+                      src={'/images/application/app-store.svg'}
+                      alt={'app store'}
+                      width={116}
+                      height={40}
+                    />
+                  </a>
                 </li>
                 <li>
-                  <Image
-                    src={'/images/application/google-play.svg'}
-                    alt={'google play'}
-                    width={134}
-                    height={40}
-                  />
+                  <a href="#" onClick={stopHashHrefNavigation}>
+                    <Image
+                      src={'/images/application/google-play.svg'}
+                      alt={'google play'}
+                      width={134}
+                      height={40}
+                    />
+                  </a>
                 </li>
               </ul>
             </div>
