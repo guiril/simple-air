@@ -196,14 +196,14 @@ export default function Home() {
           <div className="sm:w-full sm:flex sm:flex-col">
             <button
               type="button"
-              className="py-[13px] px-[23px] mr-4 text-p-md-sb leading-[1.5em]
+              className="py-[11px] px-[19px] mr-4 text-p-md-sb leading-[1.5em]
                 text-neutral-600 border border-neutral-700/[.12] rounded-lg sm:mr-0 sm:mb-3"
             >
               優惠說明
             </button>
             <button
               type="button"
-              className="py-[13px] px-[23px] text-p-md-sb leading-[1.5em]
+              className="py-[11px] px-[19px] text-p-md-sb leading-[1.5em]
               text-neutral-0 bg-primary-700 border border-primary-700 rounded-lg"
             >
               立即搜尋
