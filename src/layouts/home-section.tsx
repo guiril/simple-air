@@ -1,20 +1,18 @@
 import { ReactNode } from 'react';
 
-interface HomeSectionProps {
-  smallTitle: string;
-  title: string;
-  description: string;
-  isMoreButton: boolean;
-  children: ReactNode;
-}
-
 export default function HomeSection({
   smallTitle,
   title,
   description,
   isMoreButton,
   children
-}: HomeSectionProps) {
+}: {
+  smallTitle: string;
+  title: string;
+  description: string;
+  isMoreButton: boolean;
+  children: ReactNode;
+}) {
   return (
     <section className="py-20 bg-neutral-0 md:py-[60px] sm:py-12">
       <div className="container">

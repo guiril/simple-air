@@ -3,32 +3,11 @@
 import Image from 'next/image';
 import { stopHashHrefNavigation } from '@/utils';
 
-interface SectionTitleProps {
-  title: string;
-}
-
-interface Link {
-  title: string;
-  link: string;
-}
-
-interface LinksListProps {
-  links: Link[];
-}
-
-interface socialMediaItem {
-  title: string;
-}
-
-interface SocialMediaListProps {
-  socialMediaItems: socialMediaItem[];
-}
-
-const SectionTitle = ({ title }: SectionTitleProps) => (
+const SectionTitle = ({ title }: { title: string }) => (
   <span className="block mb-5 text-p-md-sb text-neutral-100">{title}</span>
 );
 
-const LinksList = ({ links }: LinksListProps) => {
+const LinksList = ({ links }: { links: { title: string; link: string }[] }) => {
   const list = links.map((link) => {
     return (
       <li key={link.title}>
@@ -46,7 +25,11 @@ const LinksList = ({ links }: LinksListProps) => {
   return <ul className="text-p-sm-r-2 text-neutral-100">{list}</ul>;
 };
 
-const SocialMediaList = ({ socialMediaItems }: SocialMediaListProps) => {
+const SocialMediaList = ({
+  socialMediaItems
+}: {
+  socialMediaItems: { title: string }[];
+}) => {
   const list = socialMediaItems.map((item) => {
     return (
       <li className="mr-[26px] last:mr-0 sm:mr-0" key={item.title}>

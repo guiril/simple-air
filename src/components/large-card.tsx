@@ -1,18 +1,16 @@
 import Image from 'next/image';
 
-interface LargeCardItem {
-  labelText: string | null;
-  imgTitle: string;
-  remaingNumber: number | null;
-  location: string;
-  price: string;
-}
-
-interface LargeCardProps {
-  items: LargeCardItem[];
-}
-
-export default function LargeCard({ items }: LargeCardProps) {
+export default function LargeCard({
+  items
+}: {
+  items: {
+    labelText: string | null;
+    imgTitle: string;
+    remaingNumber: number | null;
+    location: string;
+    price: string;
+  }[];
+}) {
   const itemsList = items.map((item) => {
     return (
       <li

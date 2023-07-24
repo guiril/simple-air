@@ -1,12 +1,14 @@
 import Image from 'next/image';
 
-interface ButtonProps {
+const Button = ({
+  iconSrc,
+  iconAlt,
+  title
+}: {
   iconSrc: string;
   iconAlt: string;
   title: string;
-}
-
-const Button = ({ iconSrc, iconAlt, title }: ButtonProps) => {
+}) => {
   return (
     <button
       type="button"
