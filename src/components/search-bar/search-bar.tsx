@@ -90,9 +90,7 @@ export default function SearchBar() {
               value={destination}
               setValue={(e) => setDestination(e.target.value)}
               isBorder={true}
-              handleFocus={() =>
-                setIsOnFocusDestination(!isOnFocusDepartureLocation)
-              }
+              handleFocus={() => setIsOnFocusDestination(!isOnFocusDestination)}
               isShowingResetButton={!!(destination && isOnFocusDestination)}
               resetValue={() => {
                 setDestination('');
