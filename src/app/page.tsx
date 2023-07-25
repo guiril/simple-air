@@ -1,7 +1,7 @@
 import Image from 'next/image';
 
 import Header from '@/components/header';
-import SearchBar from '@/components/search-bar';
+import SearchBar from '@/components/search-bar/search-bar';
 import HomeSection from '@/layouts/home-section';
 import LargeCard from '@/components/large-card';
 import AirlinesTab from '@/components/airlinesTab';

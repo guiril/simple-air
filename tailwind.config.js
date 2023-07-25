@@ -159,6 +159,13 @@ module.exports = {
           fontWeight: '400'
         }
       ],
+      'p-sm-sb': [
+        '0.875rem',
+        {
+          lineHeight: '1.3em',
+          fontWeight: '600'
+        }
+      ],
       'p-sm-btn': [
         '0.875rem',
         {
