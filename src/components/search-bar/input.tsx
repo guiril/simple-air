@@ -7,6 +7,7 @@ export default function Input({
   value,
   setValue,
   isBorder,
+  isDisabled,
   handleFocus,
   isShowingResetButton,
   resetValue
@@ -17,6 +18,7 @@ export default function Input({
   value: string;
   setValue: (e: React.ChangeEvent<HTMLInputElement>) => void;
   isBorder: boolean;
+  isDisabled: boolean;
   handleFocus: (e: React.FocusEvent<HTMLInputElement>) => void;
   isShowingResetButton: boolean;
   resetValue: (e: React.MouseEvent<HTMLButtonElement>) => void;
@@ -26,9 +28,9 @@ export default function Input({
       <input
         type="text"
         id={id}
-        className={`w-full h-full pt-[42px] pb-4 px-4 text-p-md-sb text-neutral-600 rounded-[8px] placeholder:font-normal selection:bg-primary-100 hover:sibling:block ${
+        className={`w-full h-full pt-[42px] pb-4 px-4 text-p-md-sb text-neutral-600 rounded-[8px] placeholder:font-normal selection:bg-primary-100 hover:sibling:block disabled:text-neutral-700/[.28] disabled:bg-neutral-0 ${
           isBorder
-            ? 'm-[-0.6px] bg-neutral-0 border border-neutral-700/[.12] hover:border-neutral-600 focus:border-[1.6px] focus:border-primary-400'
+            ? 'bg-neutral-0 border border-neutral-700/[.12] hover:border-neutral-600 focus:border-[1.6px] focus:border-primary-400'
             : ''
         }`}
         placeholder={placeholder}
@@ -37,14 +39,15 @@ export default function Input({
         onFocus={handleFocus}
         onBlur={handleFocus}
         autoComplete="off"
+        disabled={isDisabled}
       />
       <label
         htmlFor={id}
         className={`absolute top-4 left-4 ${
-          value
+          value && !isDisabled
             ? 'text-p-sm-r-2 text-neutral-500'
             : 'text-p-sm-sb text-neutral-600'
-        }`}
+        } ${isDisabled ? 'font-normal text-neutral-700/[.28]' : ''}`}
       >
         {label}
       </label>

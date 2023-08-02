@@ -159,6 +159,13 @@ module.exports = {
           fontWeight: '400'
         }
       ],
+      'p-sm-md': [
+        '0.875rem',
+        {
+          lineHeight: '1.4em',
+          fontWeight: '500'
+        }
+      ],
       'p-sm-sb': [
         '0.875rem',
         {

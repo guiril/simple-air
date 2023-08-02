@@ -1,11 +1,16 @@
 'use client';
 
-import Image from 'next/image';
 import { useState } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 
+import Image from 'next/image';
+
 import Dropdown from './dropdown';
+import { OptionContainer, Option, PassengersSelector } from './dropdown';
 import Input from './input';
+
+const getPassengerText = (adultsNum: number, childrenNum: number) =>
+  `${adultsNum} 位成人${childrenNum ? '，' + childrenNum + ' 位兒童' : ''}`;
 
 export default function SearchBar() {
   const router = useRouter();
@@ -24,13 +29,36 @@ export default function SearchBar() {
     searchParams.get('returnDate') || ''
   );
 
+  const [activeDropdown, setActiveDropdown] = useState('');
+
+  const [currentWay, setCurrentWay] = useState('來回');
+  const [currentCabin, setCurrentCabin] = useState('經濟艙');
+
+  const [currentAdultsNumber, setCurrentAdultsNumber] = useState(1);
+  const [currentChildrenNumber, setCurrentChildrenNumber] = useState(0);
+  const [currentPassengers, setCurrentPassengers] = useState(
+    getPassengerText(currentAdultsNumber, currentChildrenNumber)
+  );
+
+  const wayOptions = [
+    { id: 0, label: '單程', value: 'one way' },
+    { id: 1, label: '來回', value: 'round' }
+  ];
+
+  const cabinOptions = [
+    { id: 0, label: '經濟艙', value: 'CABIN_CLASS_ECONOMY' },
+    { id: 1, label: '高端經濟艙', value: 'CABIN_CLASS_PREMIUM_ECONOMY' },
+    { id: 2, label: '商務艙', value: 'CABIN_CLASS_BUSINESS' },
+    { id: 3, label: '頭等艙', value: 'CABIN_CLASS_FIRST' }
+  ];
+
   const [isOnFocusDepartureLocation, setIsOnFocusDepartureLocation] =
     useState(false);
   const [isOnFocusDestination, setIsOnFocusDestination] = useState(false);
   const [isOnFocusDepartureDate, setIsOnFocusDepartureDate] = useState(false);
   const [isOnFocusReturnDate, setIsOnFocusReturnDate] = useState(false);
 
-  const handleExchanging = () => {
+  const handleLocationExchange = () => {
     setDepartureLocation(destination);
     setDestination(departureLocation);
   };
@@ -41,8 +69,82 @@ export default function SearchBar() {
         before:absolute before:top-0 before:right-0 before:bottom-0 before:left-0 before:z-0
         before:block before:bg-neutral-100/[.84] before:rounded-xl before:blur-[1px] sm:p-3"
     >
-      <ul className="relative z-10 flex items-center mb-1 sm:justify-between sm:mb-3">
-        <Dropdown />
+      <ul className="relative z-20 flex items-center mb-1 sm:justify-between sm:mb-3">
+        <Dropdown
+          iconSrc={'way'}
+          iconAlt={'round or one way'}
+          text={currentWay}
+          onButtonClick={() => setActiveDropdown('way')}
+        >
+          {activeDropdown === 'way' && (
+            <OptionContainer>
+              {wayOptions.map((option) => (
+                <Option
+                  key={option.id}
+                  label={option.label}
+                  currentOption={currentWay}
+                  onOptionClick={() => {
+                    setActiveDropdown('');
+                    setCurrentWay(option.label);
+                  }}
+                />
+              ))}
+            </OptionContainer>
+          )}
+        </Dropdown>
+        <Dropdown
+          iconSrc={'passenger'}
+          iconAlt={'passenger'}
+          text={currentPassengers}
+          onButtonClick={() => setActiveDropdown('passenger')}
+        >
+          {activeDropdown === 'passenger' && (
+            <PassengersSelector
+              currentAdultsNumber={currentAdultsNumber}
+              currentChildrenNumber={currentChildrenNumber}
+              reduceAdults={() =>
+                setCurrentAdultsNumber(currentAdultsNumber - 1)
+              }
+              increasAdults={() =>
+                setCurrentAdultsNumber(currentAdultsNumber + 1)
+              }
+              reduceChildren={() =>
+                setCurrentChildrenNumber(currentChildrenNumber - 1)
+              }
+              increaseChildren={() =>
+                setCurrentChildrenNumber(currentChildrenNumber + 1)
+              }
+              onComfirmClick={() => {
+                setActiveDropdown('');
+                setCurrentPassengers(
+                  getPassengerText(currentAdultsNumber, currentChildrenNumber)
+                );
+              }}
+            />
+          )}
+        </Dropdown>
+        <Dropdown
+          iconSrc={'cabin'}
+          iconAlt={'cabin'}
+          text={currentCabin}
+          onButtonClick={() => setActiveDropdown('cabin')}
+        >
+          {activeDropdown === 'cabin' && (
+            <OptionContainer>
+              {cabinOptions.map((option) => (
+                <Option
+                  key={option.id}
+                  label={option.label}
+                  currentOption={currentCabin}
+                  onOptionClick={() => {
+                    setActiveDropdown('');
+                    setCurrentCabin(option.label);
+                  }}
+                />
+              ))}
+            </OptionContainer>
+          )}
+        </Dropdown>
       </ul>
       <div className="relative z-10 flex items-center md:flex-col md:items-stretch">
         <div
@@ -57,6 +159,7 @@ export default function SearchBar() {
               value={departureLocation}
               setValue={(e) => setDepartureLocation(e.target.value)}
               isBorder={true}
+              isDisabled={false}
               handleFocus={() =>
                 setIsOnFocusDepartureLocation(!isOnFocusDepartureLocation)
               }
@@ -73,7 +176,7 @@ export default function SearchBar() {
             className="absolute top-[22px] left-[calc(50%-20px)] z-20 w-[40px] h-[40px]
               sm:top-[72px] sm:right-4 sm:left-auto"
             tabIndex={-1}
-            onClick={handleExchanging}
+            onClick={handleLocationExchange}
           >
             <Image
               src={'/images/icons/change.svg'}
@@ -90,7 +193,10 @@ export default function SearchBar() {
               value={destination}
               setValue={(e) => setDestination(e.target.value)}
               isBorder={true}
-              handleFocus={() => setIsOnFocusDestination(!isOnFocusDestination)}
+              isDisabled={false}
+              handleFocus={() =>
+                setIsOnFocusDestination(!isOnFocusDepartureLocation)
+              }
               isShowingResetButton={!!(destination && isOnFocusDestination)}
               resetValue={() => {
                 setDestination('');
@@ -101,7 +207,7 @@ export default function SearchBar() {
         <div
           className={`grow grid grid-cols-2 gap-4 mr-4 bg-neutral-0 rounded-lg lg:mr-3 md:mr-0 md:mb-4 sm:mb-3 ${
             isOnFocusDepartureDate || isOnFocusReturnDate
-              ? 'm-[-0.6px] border-[1.6px] border-primary-400'
+              ? 'border-[1.6px] border-primary-400'
               : 'border border-neutral-700/[.12] hover:border-neutral-600'
           }`}
         >
@@ -118,6 +224,7 @@ export default function SearchBar() {
               value={departureDate}
               setValue={(e) => setDepartureDate(e.target.value)}
               isBorder={false}
+              isDisabled={false}
               handleFocus={() =>
                 setIsOnFocusDepartureDate(!isOnFocusDepartureDate)
               }
@@ -135,6 +242,7 @@ export default function SearchBar() {
               value={returnDate}
               setValue={(e) => setReturnDate(e.target.value)}
               isBorder={false}
+              isDisabled={currentWay === '單程'}
               handleFocus={() => setIsOnFocusReturnDate(!isOnFocusReturnDate)}
               isShowingResetButton={!!(returnDate && isOnFocusReturnDate)}
               resetValue={() => {
