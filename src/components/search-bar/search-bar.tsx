@@ -103,7 +103,7 @@ export default function SearchBar() {
         <div
           className={`grow grid grid-cols-2 gap-4 mr-4 bg-neutral-0 rounded-lg lg:mr-3 md:mr-0 md:mb-4 sm:mb-3 ${
             isOnFocusDepartureDate || isOnFocusReturnDate
-              ? 'm-[-0.6px] border-[1.6px] border-primary-400'
+              ? 'border-[1.6px] border-primary-400'
               : 'border border-neutral-700/[.12] hover:border-neutral-600'
           }`}
         >

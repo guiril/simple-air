@@ -28,7 +28,7 @@ export default function Input({
         id={id}
         className={`w-full h-full pt-[42px] pb-4 px-4 text-p-md-sb text-neutral-600 rounded-[8px] placeholder:font-normal selection:bg-primary-100 hover:sibling:block ${
           isBorder
-            ? 'm-[-0.6px] bg-neutral-0 border border-neutral-700/[.12] hover:border-neutral-600 focus:border-[1.6px] focus:border-primary-400'
+            ? 'bg-neutral-0 border border-neutral-700/[.12] hover:border-neutral-600 focus:border-[1.6px] focus:border-primary-400'
             : ''
         }`}
         placeholder={placeholder}
