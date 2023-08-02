@@ -41,7 +41,7 @@ export default function SearchBar() {
         before:absolute before:top-0 before:right-0 before:bottom-0 before:left-0 before:z-0
         before:block before:bg-neutral-100/[.84] before:rounded-xl before:blur-[1px] sm:p-3"
     >
-      <ul className="relative z-10 flex items-center mb-1 sm:justify-between sm:mb-3">
+      <ul className="relative z-20 flex items-center mb-1 sm:justify-between sm:mb-3">
         <Dropdown />
       </ul>
       <div className="relative z-10 flex items-center md:flex-col md:items-stretch">
