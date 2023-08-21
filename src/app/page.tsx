@@ -147,7 +147,7 @@ export default function Home() {
           md:pb-[40px]"
       >
         <div className="container h-full flex flex-col">
-          <Header />
+          <Header isBlackLogo={true} />
           <div className="grow pt-[120px] md:pt-[200px] sm:pt-[80px]">
             <div className="mb-[214px] text-center md:mb-[228px] sm:mb-[24px]">
               <h1 className="mb-2 text-h1 text-neutral-0">

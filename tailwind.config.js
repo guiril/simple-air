@@ -136,6 +136,13 @@ module.exports = {
           fontWeight: '600'
         }
       ],
+      'p-md-sb-btn': [
+        '1rem',
+        {
+          lineHeight: '1.5em',
+          fontWeight: '600'
+        }
+      ],
       'p-md-body': [
         '1rem',
         {
@@ -217,7 +224,7 @@ module.exports = {
     plugin(function ({ addComponents }) {
       addComponents({
         '.container': {
-          maxWidth: '1280px'
+          maxWidth: '1280px',
         },
         '@screen lg': {
           '.container': {

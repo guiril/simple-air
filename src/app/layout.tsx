@@ -1,4 +1,4 @@
-import './globals.css';
+import './globals.scss';
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 
@@ -6,11 +6,11 @@ const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
   title: 'Simple Air',
-  description: 'Simplify Your Sky',
+  description: 'Simplify Your Sky'
 };
 
 export default function RootLayout({
-  children,
+  children
 }: {
   children: React.ReactNode;
 }) {
