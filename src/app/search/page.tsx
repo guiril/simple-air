@@ -232,7 +232,7 @@ export default function SearchPage() {
         </div>
       </div>
       <div className="container flex justify-between py-[60px]">
-        <ul className="basis-[344px] mr-8 px-3">
+        <ul className="basis-[344px] shrink-0 mr-8 px-3">
           <li className="relative">
             <FilterTitle
               title={'轉機'}
@@ -617,7 +617,7 @@ export default function SearchPage() {
             </div>
           </li>
         </ul>
-        <div className="grow">
+        <div className="grow shrink-0">
           <ul className="flex items-start mb-6 bg-neutral-0 border border-neutral-700/[.12] rounded-lg">
             <li
               className="relative py-6 pl-4 grow basis-0 cursor-pointer rounded-lg

@@ -224,7 +224,7 @@ module.exports = {
     plugin(function ({ addComponents }) {
       addComponents({
         '.container': {
-          maxWidth: '1280px'
+          maxWidth: '1280px',
         },
         '@screen lg': {
           '.container': {
