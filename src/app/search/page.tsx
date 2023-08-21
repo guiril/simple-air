@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { use, useState } from 'react';
 import { useSearchParams } from 'next/navigation';
 import { stopHashHrefNavigation } from '@/utils';
 
@@ -137,6 +137,15 @@ export default function SearchPage() {
   const MAX_FLIGHT_HOURS = 30;
   const MIN_FLIGHT_HOURS = 3.5;
 
+  const [isStopNumberFilterShowing, setIsStopNumberFilterShowing] =
+    useState(true);
+  const [isDepatureTimeFilterShowing, setIsDepatureTimeFilterShowing] =
+    useState(true);
+  const [isFlightTimeFilterShowing, setIsFlightTimeFilterShowing] =
+    useState(true);
+  const [isAirportFilterShowing, setIsAirportFilterShowing] = useState(true);
+  const [isAirlineFilterShowing, setIsAirlineFilterShowing] = useState(true);
+
   const [stopNumber, setStopNumber] = useState([0, 1, 2]);
   const [departureTimeSliderValue, setDepartureTimeSliderValue] = useState([
     0, 48
@@ -225,75 +234,115 @@ export default function SearchPage() {
       <div className="container flex justify-between py-[60px]">
         <ul className="basis-[344px] mr-8 px-3">
           <li className="relative">
-            <FilterTitle title={'轉機'} description={null} />
-            <div className="py-[14px]">
-              <Checkbox
-                id={'nonStop'}
-                value={0}
-                title={'直飛 (16)'}
-                price={'50,599'}
-                checked={stopNumber.findIndex((el) => el === 0) !== -1}
-                onCheckboxChange={handleStopNumberCheckboxChange}
-              />
-            </div>
-            <div className="py-[14px]">
-              <Checkbox
-                id={'oneStop'}
-                value={1}
-                title={'轉機 1 次 (8)'}
-                price={'41,347'}
-                checked={stopNumber.findIndex((el) => el === 1) !== -1}
-                onCheckboxChange={handleStopNumberCheckboxChange}
-              />
-            </div>
-            <div className="py-[14px]">
-              <Checkbox
-                id={'twoStop'}
-                value={2}
-                title={'轉機 2 次 (4)'}
-                price={'40,298'}
-                checked={stopNumber.findIndex((el) => el === 2) !== -1}
-                onCheckboxChange={handleStopNumberCheckboxChange}
-              />
+            <FilterTitle
+              title={'轉機'}
+              description={null}
+              isShowingFilter={isStopNumberFilterShowing}
+              onFilterTitleClick={() => {
+                setIsStopNumberFilterShowing(!isStopNumberFilterShowing);
+              }}
+            />
+            <div
+              className={`ease-in-out duration-200 ${
+                isStopNumberFilterShowing
+                  ? 'pb-6 h-auto overflow-visible opacity-100'
+                  : 'h-0 overflow-hidden opacity-0'
+              }`}
+            >
+              <div className="py-[14px]">
+                <Checkbox
+                  id={'nonStop'}
+                  value={0}
+                  title={'直飛 (16)'}
+                  price={'50,599'}
+                  checked={stopNumber.findIndex((el) => el === 0) !== -1}
+                  onCheckboxChange={handleStopNumberCheckboxChange}
+                />
+              </div>
+              <div className="py-[14px]">
+                <Checkbox
+                  id={'oneStop'}
+                  value={1}
+                  title={'轉機 1 次 (8)'}
+                  price={'41,347'}
+                  checked={stopNumber.findIndex((el) => el === 1) !== -1}
+                  onCheckboxChange={handleStopNumberCheckboxChange}
+                />
+              </div>
+              <div className="py-[14px]">
+                <Checkbox
+                  id={'twoStop'}
+                  value={2}
+                  title={'轉機 2 次 (4)'}
+                  price={'40,298'}
+                  checked={stopNumber.findIndex((el) => el === 2) !== -1}
+                  onCheckboxChange={handleStopNumberCheckboxChange}
+                />
+              </div>
             </div>
             <FilterDividingLine />
           </li>
           <li className="relative">
-            <FilterTitle title={'出發時間'} description={null} />
-            <TimeSlider
-              label={'去程'}
-              value={departureTimeSliderValue}
-              onChange={(value) => {
-                // The type definition in the rc-slider source code allows the value to be either a number or an array of numbers.
-                // Since the range property is being used here, it can be confidently stated that in this specific use case,
-                // the value should always be an array containing two numbers.
-                // This explains the type assertion below.
-                handleTimeSliderOnChange(
-                  value as number[],
-                  setDepartureTimeSliderValue
-                );
+            <FilterTitle
+              title={'出發時間'}
+              description={null}
+              isShowingFilter={isDepatureTimeFilterShowing}
+              onFilterTitleClick={() => {
+                setIsDepatureTimeFilterShowing(!isDepatureTimeFilterShowing);
               }}
             />
-            <TimeSlider
-              label={'回程'}
-              value={returnTimeSliderValue}
-              onChange={(value) => {
-                // Using type assertion here as well,
-                // for the same reason explained in the onChange for the departure time slider.
-                handleTimeSliderOnChange(
-                  value as number[],
-                  setReturnTimeSliderValue
-                );
-              }}
-            />
+            <div
+              className={`ease-in-out duration-200 ${
+                isDepatureTimeFilterShowing
+                  ? 'pb-6 h-auto overflow-visible opacity-100'
+                  : 'h-0 overflow-hidden opacity-0'
+              }`}
+            >
+              <TimeSlider
+                label={'去程'}
+                value={departureTimeSliderValue}
+                onChange={(value) => {
+                  // The type definition in the rc-slider source code allows the value to be either a number or an array of numbers.
+                  // Since the range property is being used here, it can be confidently stated that in this specific use case,
+                  // the value should always be an array containing two numbers.
+                  // This explains the type assertion below.
+                  handleTimeSliderOnChange(
+                    value as number[],
+                    setDepartureTimeSliderValue
+                  );
+                }}
+              />
+              <TimeSlider
+                label={'回程'}
+                value={returnTimeSliderValue}
+                onChange={(value) => {
+                  // Using type assertion here as well,
+                  // for the same reason explained in the onChange for the departure time slider.
+                  handleTimeSliderOnChange(
+                    value as number[],
+                    setReturnTimeSliderValue
+                  );
+                }}
+              />
+            </div>
             <FilterDividingLine />
           </li>
           <li className="relative">
             <FilterTitle
               title={'飛行時間'}
               description={`最短時間為 ${MIN_FLIGHT_HOURS} 小時`}
+              isShowingFilter={isFlightTimeFilterShowing}
+              onFilterTitleClick={() =>
+                setIsFlightTimeFilterShowing(!isFlightTimeFilterShowing)
+              }
             />
-            <div className="px-[10px]">
+            <div
+              className={`px-[10px] ease-in-out duration-200 ${
+                isFlightTimeFilterShowing
+                  ? 'pb-6 h-auto overflow-visible opacity-100'
+                  : 'h-0 overflow-hidden opacity-0'
+              }`}
+            >
               <Slider
                 className="py-[10px] mb-2"
                 min={0}
@@ -318,218 +367,254 @@ export default function SearchPage() {
             <FilterDividingLine />
           </li>
           <li className="relative">
-            <FilterTitle title={'機場'} description={null} />
-            <ToggleSwitch
-              id={'theSameAirport'}
-              title={'從相同機場出發和返回'}
-              checked={isReturnToSameAirport}
-              onSwitchChanged={() => {
-                // Store the new value of isReturnToSameAirport in a local variable to ensure immediate UI update.
-                const newIsReturnToSameAirport = !isReturnToSameAirport;
-
-                if (newIsReturnToSameAirport) {
-                  setAirportsList(['tpe', 'tsa']);
-                } else {
-                  setAirportsList([]);
-                }
-
-                setIsReturnToSameAirport(newIsReturnToSameAirport);
-              }}
+            <FilterTitle
+              title={'機場'}
+              description={null}
+              isShowingFilter={isAirportFilterShowing}
+              onFilterTitleClick={() =>
+                setIsAirportFilterShowing(!isAirportFilterShowing)
+              }
             />
-            <div className="pt-4">
-              <span className="text-p-sm-sb text-neutral-600">出發</span>
-              <div className="py-[14px]">
-                <Checkbox
-                  id={'tpe'}
-                  value={'tpe'}
-                  title={'TPE 台北桃園機場'}
-                  price={null}
-                  onCheckboxChange={handleAirportsCheckboxChange}
-                  checked={airportsList.findIndex((el) => el === 'tpe') !== -1}
-                />
-              </div>
-              <div className="py-[14px]">
-                <Checkbox
-                  id={'tsa'}
-                  value={'tsa'}
-                  title={'TSA 台北松山機場'}
-                  price={null}
-                  onCheckboxChange={handleAirportsCheckboxChange}
-                  checked={airportsList.findIndex((el) => el === 'tsa') !== -1}
-                />
+            <div
+              className={`ease-in-out duration-200 ${
+                isAirportFilterShowing
+                  ? 'pb-6 h-auto overflow-visible opacity-100'
+                  : 'h-0 overflow-hidden opacity-0'
+              }`}
+            >
+              <ToggleSwitch
+                id={'theSameAirport'}
+                title={'從相同機場出發和返回'}
+                checked={isReturnToSameAirport}
+                onSwitchChanged={() => {
+                  // Store the new value of isReturnToSameAirport in a local variable to ensure immediate UI update.
+                  const newIsReturnToSameAirport = !isReturnToSameAirport;
+
+                  if (newIsReturnToSameAirport) {
+                    setAirportsList(['tpe', 'tsa']);
+                  } else {
+                    setAirportsList([]);
+                  }
+
+                  setIsReturnToSameAirport(newIsReturnToSameAirport);
+                }}
+              />
+              <div className="pt-4">
+                <span className="text-p-sm-sb text-neutral-600">出發</span>
+                <div className="py-[14px]">
+                  <Checkbox
+                    id={'tpe'}
+                    value={'tpe'}
+                    title={'TPE 台北桃園機場'}
+                    price={null}
+                    onCheckboxChange={handleAirportsCheckboxChange}
+                    checked={
+                      airportsList.findIndex((el) => el === 'tpe') !== -1
+                    }
+                  />
+                </div>
+                <div className="py-[14px]">
+                  <Checkbox
+                    id={'tsa'}
+                    value={'tsa'}
+                    title={'TSA 台北松山機場'}
+                    price={null}
+                    onCheckboxChange={handleAirportsCheckboxChange}
+                    checked={
+                      airportsList.findIndex((el) => el === 'tsa') !== -1
+                    }
+                  />
+                </div>
               </div>
             </div>
             <FilterDividingLine />
           </li>
           <li className="relative">
-            <FilterTitle title={'航空公司'} description={null} />
-            <ToggleSwitch
-              id={'selectAllAirlines'}
-              title={'選擇所有航空公司'}
-              checked={isAllAirlinesSelected}
-              onSwitchChanged={() => {
-                const newIsAllAirlinesSelected = !isAllAirlinesSelected;
-                setIsAllAirlinesSelected(newIsAllAirlinesSelected);
-
-                if (newIsAllAirlinesSelected) {
-                  setAirlinesList([
-                    'value alliiance',
-                    'star alliance',
-                    'sky team',
-                    'oneworld',
-                    'starlux',
-                    'china airlines',
-                    'tiger airways',
-                    'cathay',
-                    'scoot',
-                    'eva air'
-                  ]);
-                } else {
-                  setAirlinesList([]);
-                }
-              }}
+            <FilterTitle
+              title={'航空公司'}
+              description={null}
+              isShowingFilter={isAirlineFilterShowing}
+              onFilterTitleClick={() =>
+                setIsAirlineFilterShowing(!isAirlineFilterShowing)
+              }
             />
-            <div className="mt-7">
-              <span className="block mb-2 text-p-sm-sb text-neutral-600">
-                航空聯盟
-              </span>
-              <div className="py-[14px]">
-                <Checkbox
-                  id={'valueAlliance'}
-                  value={'value alliiance'}
-                  title={'價值聯盟'}
-                  price={null}
-                  onCheckboxChange={handleAirlinesCheckboxChange}
-                  checked={
-                    airlinesList.findIndex((el) => el === 'value alliiance') !==
-                    -1
-                  }
-                />
-              </div>
-              <div className="py-[14px]">
-                <Checkbox
-                  id={'starAlliance'}
-                  title={'天合聯盟'}
-                  value={'star alliance'}
-                  price={null}
-                  onCheckboxChange={handleAirlinesCheckboxChange}
-                  checked={
-                    airlinesList.findIndex((el) => el === 'star alliance') !==
-                    -1
-                  }
-                />
-              </div>
-              <div className="py-[14px]">
-                <Checkbox
-                  id={'skyTeam'}
-                  title={'星空聯盟'}
-                  value={'sky team'}
-                  price={null}
-                  onCheckboxChange={handleAirlinesCheckboxChange}
-                  checked={
-                    airlinesList.findIndex((el) => el === 'sky team') !== -1
-                  }
-                />
-              </div>
-              <div className="py-[14px]">
-                <Checkbox
-                  id={'oneworld'}
-                  title={'寰宇一家'}
-                  value={'oneworld'}
-                  price={null}
-                  onCheckboxChange={handleAirlinesCheckboxChange}
-                  checked={
-                    airlinesList.findIndex((el) => el === 'oneworld') !== -1
-                  }
-                />
-              </div>
-            </div>
-            <div className="mt-7">
-              <span className="block mb-2 text-p-sm-sb text-neutral-600">
-                航空公司 (16)
-              </span>
-              <div className="py-[14px]">
-                <Checkbox
-                  id={'starlux'}
-                  value={'starlux'}
-                  title={'星宇航空'}
-                  price={'8,831'}
-                  onCheckboxChange={handleAirlinesCheckboxChange}
-                  checked={
-                    airlinesList.findIndex((el) => el === 'starlux') !== -1
-                  }
-                />
-              </div>
-              <div className="py-[14px]">
-                <Checkbox
-                  id={'chinaAirlines'}
-                  value={'china airlines'}
-                  title={'中華航空'}
-                  price={'8,831'}
-                  onCheckboxChange={handleAirlinesCheckboxChange}
-                  checked={
-                    airlinesList.findIndex((el) => el === 'china airlines') !==
-                    -1
-                  }
-                />
-              </div>
-              <div className="py-[14px]">
-                <Checkbox
-                  id={'tigerAirways'}
-                  value={'tiger airways'}
-                  title={'台灣虎航'}
-                  price={'8,831'}
-                  onCheckboxChange={handleAirlinesCheckboxChange}
-                  checked={
-                    airlinesList.findIndex((el) => el === 'tiger airways') !==
-                    -1
-                  }
-                />
-              </div>
-              <div className="py-[14px]">
-                <Checkbox
-                  id={'cathay'}
-                  value={'cathay'}
-                  title={'國泰航空'}
-                  price={'8,831'}
-                  onCheckboxChange={handleAirlinesCheckboxChange}
-                  checked={
-                    airlinesList.findIndex((el) => el === 'cathay') !== -1
-                  }
-                />
-              </div>
-              <div className="py-[14px]">
-                <Checkbox
-                  id={'scoot'}
-                  value={'scoot'}
-                  title={'酷航'}
-                  price={'8,831'}
-                  onCheckboxChange={handleAirlinesCheckboxChange}
-                  checked={
-                    airlinesList.findIndex((el) => el === 'scoot') !== -1
-                  }
-                />
-              </div>
-              <div className="py-[14px]">
-                <Checkbox
-                  id={'evaAir'}
-                  value={'eva air'}
-                  title={'長榮航空'}
-                  price={'8,831'}
-                  onCheckboxChange={handleAirlinesCheckboxChange}
-                  checked={
-                    airlinesList.findIndex((el) => el === 'eva air') !== -1
-                  }
-                />
-              </div>
-            </div>
-            <a
-              href="#"
-              onClick={stopHashHrefNavigation}
-              className="block mt-6 text-center text-p-sm-sb text-primary-500"
+            <div
+              className={`ease-in-out duration-200 ${
+                isAirlineFilterShowing
+                  ? 'pb-6 h-auto overflow-visible opacity-100'
+                  : 'h-0 overflow-hidden opacity-0'
+              }`}
             >
-              顯示另外 10 家航空公司
-            </a>
+              <ToggleSwitch
+                id={'selectAllAirlines'}
+                title={'選擇所有航空公司'}
+                checked={isAllAirlinesSelected}
+                onSwitchChanged={() => {
+                  const newIsAllAirlinesSelected = !isAllAirlinesSelected;
+                  setIsAllAirlinesSelected(newIsAllAirlinesSelected);
+
+                  if (newIsAllAirlinesSelected) {
+                    setAirlinesList([
+                      'value alliiance',
+                      'star alliance',
+                      'sky team',
+                      'oneworld',
+                      'starlux',
+                      'china airlines',
+                      'tiger airways',
+                      'cathay',
+                      'scoot',
+                      'eva air'
+                    ]);
+                  } else {
+                    setAirlinesList([]);
+                  }
+                }}
+              />
+              <div className="mt-7">
+                <span className="block mb-2 text-p-sm-sb text-neutral-600">
+                  航空聯盟
+                </span>
+                <div className="py-[14px]">
+                  <Checkbox
+                    id={'valueAlliance'}
+                    value={'value alliiance'}
+                    title={'價值聯盟'}
+                    price={null}
+                    onCheckboxChange={handleAirlinesCheckboxChange}
+                    checked={
+                      airlinesList.findIndex(
+                        (el) => el === 'value alliiance'
+                      ) !== -1
+                    }
+                  />
+                </div>
+                <div className="py-[14px]">
+                  <Checkbox
+                    id={'starAlliance'}
+                    title={'天合聯盟'}
+                    value={'star alliance'}
+                    price={null}
+                    onCheckboxChange={handleAirlinesCheckboxChange}
+                    checked={
+                      airlinesList.findIndex((el) => el === 'star alliance') !==
+                      -1
+                    }
+                  />
+                </div>
+                <div className="py-[14px]">
+                  <Checkbox
+                    id={'skyTeam'}
+                    title={'星空聯盟'}
+                    value={'sky team'}
+                    price={null}
+                    onCheckboxChange={handleAirlinesCheckboxChange}
+                    checked={
+                      airlinesList.findIndex((el) => el === 'sky team') !== -1
+                    }
+                  />
+                </div>
+                <div className="py-[14px]">
+                  <Checkbox
+                    id={'oneworld'}
+                    title={'寰宇一家'}
+                    value={'oneworld'}
+                    price={null}
+                    onCheckboxChange={handleAirlinesCheckboxChange}
+                    checked={
+                      airlinesList.findIndex((el) => el === 'oneworld') !== -1
+                    }
+                  />
+                </div>
+              </div>
+              <div className="mt-7">
+                <span className="block mb-2 text-p-sm-sb text-neutral-600">
+                  航空公司 (16)
+                </span>
+                <div className="py-[14px]">
+                  <Checkbox
+                    id={'starlux'}
+                    value={'starlux'}
+                    title={'星宇航空'}
+                    price={'8,831'}
+                    onCheckboxChange={handleAirlinesCheckboxChange}
+                    checked={
+                      airlinesList.findIndex((el) => el === 'starlux') !== -1
+                    }
+                  />
+                </div>
+                <div className="py-[14px]">
+                  <Checkbox
+                    id={'chinaAirlines'}
+                    value={'china airlines'}
+                    title={'中華航空'}
+                    price={'8,831'}
+                    onCheckboxChange={handleAirlinesCheckboxChange}
+                    checked={
+                      airlinesList.findIndex(
+                        (el) => el === 'china airlines'
+                      ) !== -1
+                    }
+                  />
+                </div>
+                <div className="py-[14px]">
+                  <Checkbox
+                    id={'tigerAirways'}
+                    value={'tiger airways'}
+                    title={'台灣虎航'}
+                    price={'8,831'}
+                    onCheckboxChange={handleAirlinesCheckboxChange}
+                    checked={
+                      airlinesList.findIndex((el) => el === 'tiger airways') !==
+                      -1
+                    }
+                  />
+                </div>
+                <div className="py-[14px]">
+                  <Checkbox
+                    id={'cathay'}
+                    value={'cathay'}
+                    title={'國泰航空'}
+                    price={'8,831'}
+                    onCheckboxChange={handleAirlinesCheckboxChange}
+                    checked={
+                      airlinesList.findIndex((el) => el === 'cathay') !== -1
+                    }
+                  />
+                </div>
+                <div className="py-[14px]">
+                  <Checkbox
+                    id={'scoot'}
+                    value={'scoot'}
+                    title={'酷航'}
+                    price={'8,831'}
+                    onCheckboxChange={handleAirlinesCheckboxChange}
+                    checked={
+                      airlinesList.findIndex((el) => el === 'scoot') !== -1
+                    }
+                  />
+                </div>
+                <div className="py-[14px]">
+                  <Checkbox
+                    id={'evaAir'}
+                    value={'eva air'}
+                    title={'長榮航空'}
+                    price={'8,831'}
+                    onCheckboxChange={handleAirlinesCheckboxChange}
+                    checked={
+                      airlinesList.findIndex((el) => el === 'eva air') !== -1
+                    }
+                  />
+                </div>
+              </div>
+              <a
+                href="#"
+                onClick={stopHashHrefNavigation}
+                className="block mt-6 text-center text-p-sm-sb text-primary-500"
+              >
+                顯示另外 10 家航空公司
+              </a>
+            </div>
           </li>
         </ul>
         <div className="grow">
