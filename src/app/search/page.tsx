@@ -152,10 +152,24 @@ export default function SearchPage() {
   ]);
   const [returnTimeSliderValue, setReturnTimeSliderValue] = useState([0, 48]);
   const [flightTimeSliderValue, setFlightTimeSliderValue] = useState(0);
-  const [isReturnToSameAirport, setIsReturnToSameAirport] = useState(false);
-  const [airportsList, setAirportsList] = useState<string[] | []>([]);
-  const [isAllAirlinesSelected, setIsAllAirlinesSelected] = useState(false);
-  const [airlinesList, setAirlinesList] = useState<string[] | []>([]);
+  const [isReturnToSameAirport, setIsReturnToSameAirport] = useState(true);
+  const [airportsList, setAirportsList] = useState<string[] | []>([
+    'tpe',
+    'tsa'
+  ]);
+  const [isAllAirlinesSelected, setIsAllAirlinesSelected] = useState(true);
+  const [airlinesList, setAirlinesList] = useState<string[] | []>([
+    'value alliiance',
+    'star alliance',
+    'sky team',
+    'oneworld',
+    'starlux',
+    'china airlines',
+    'tiger airways',
+    'cathay',
+    'scoot',
+    'eva air'
+  ]);
 
   const handleTimeSliderOnChange = (
     value: number[],
