@@ -193,6 +193,8 @@ export default function SearchPage() {
     e: React.ChangeEvent<HTMLInputElement>
   ) => {
     let airports = [...airportsList];
+
+    const allAirpots = ['tpe', 'tsa'].sort();
     const isChecked = e.target.checked;
     const airport = e.target.value;
     const index = airports.findIndex((el) => el === airport);
@@ -203,6 +205,12 @@ export default function SearchPage() {
       airports.splice(index, 1);
     }
 
+    if (JSON.stringify(airports.sort()) === JSON.stringify(allAirpots)) {
+      setIsReturnToSameAirport(true);
+    } else {
+      setIsReturnToSameAirport(false);
+    }
+
     setAirportsList(airports);
   };
 
@@ -210,6 +218,19 @@ export default function SearchPage() {
     e: React.ChangeEvent<HTMLInputElement>
   ) => {
     let airlines = [...airlinesList];
+
+    const allAirlines = [
+      'value alliiance',
+      'star alliance',
+      'sky team',
+      'oneworld',
+      'starlux',
+      'china airlines',
+      'tiger airways',
+      'cathay',
+      'scoot',
+      'eva air'
+    ].sort();
     const isChecked = e.target.checked;
     const airline = e.target.value;
     const index = airlines.findIndex((el) => el === airline);
@@ -218,6 +239,12 @@ export default function SearchPage() {
       airlines = [...airlinesList, airline];
     } else {
       airlines.splice(index, 1);
+    }
+
+    if (JSON.stringify(airlines.sort()) === JSON.stringify(allAirlines)) {
+      setIsAllAirlinesSelected(true);
+    } else {
+      setIsAllAirlinesSelected(false);
     }
 
     setAirlinesList(airlines);
