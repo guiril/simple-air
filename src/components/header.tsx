@@ -29,13 +29,17 @@ const Button = ({
   );
 };
 
-export default function Header() {
+export default function Header({ isBlackLogo }: { isBlackLogo: boolean }) {
   return (
-    <header className="h-[92px] flex justify-between items-center sm:h-[80px]">
+    <header className="h-[88px] flex justify-between items-center sm:h-[80px]">
       <div className="w-[124px] h-[24px]">
         <a
           href="/"
-          className="block w-full h-full bg-[url(/images/logos/logo.svg)] bg-no-repeat"
+          className={`block w-full h-full bg-no-repeat ${
+            isBlackLogo
+              ? 'bg-[url(/images/logos/logo.svg)]'
+              : 'bg-[url(/images/logos/white.svg)]'
+          }`}
         >
           <span className="sr-only">Simple Air</span>
         </a>

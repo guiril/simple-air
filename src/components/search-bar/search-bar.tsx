@@ -63,6 +63,10 @@ export default function SearchBar() {
     setDestination(departureLocation);
   };
 
+  const handleSearchClick = () => {
+    router.push('/search');
+  };
+
   return (
     <div
       className="relative flex flex-col p-4 rounded-xl border border-neutral-700/[.08]
@@ -255,11 +259,7 @@ export default function SearchBar() {
           type="button"
           className="grow-0 shrink-0 flex justify-center items-center py-[12px] px-[20px] bg-primary-700 rounded-[8px]
           hover:bg-primary-500"
-          onClick={() =>
-            router.push(
-              `/search?originPlace=${departureLocation}&destinationPlace=${destination}&departDate=${departureDate}&returnDate=${returnDate}`
-            )
-          }
+          onClick={handleSearchClick}
         >
           <Image
             src="/images/icons/search.svg"
