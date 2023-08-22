@@ -395,13 +395,9 @@ export default function SearchPage() {
                 }}
               />
               <div className="flex justify-between items-center mx-[-10px] text-p-xs text-neutral-600">
+                <span>{MIN_FLIGHT_HOURS}</span>
                 <span>
                   {formatFlightTimeSliderValue(flightTimeSliderValue)}
-                </span>
-                <span>
-                  {formatFlightTimeSliderValue(
-                    (MAX_FLIGHT_HOURS - MIN_FLIGHT_HOURS) * 2
-                  )}
                 </span>
               </div>
             </div>
