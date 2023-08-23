@@ -552,7 +552,7 @@ export default function SearchPage() {
           </ul>
           <button
             type="button"
-            className="w-full py-3 text-p-md-sb-btn text-primary-500 bg-primary-50 rounded-lg"
+            className="w-full py-3 text-p-md-sb-btn text-primary-500 bg-primary-50 rounded-lg hover:bg-primary-100"
           >
             顯示更多結果
           </button>

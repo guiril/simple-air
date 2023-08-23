@@ -71,7 +71,7 @@ export function PassengersSelector({
             onClick={reduceAdults}
             disabled={currentAdultsNumber === 1}
           >
-            <span>-</span>
+            <span className="relative top-[-1px]">-</span>
           </button>
           <span className="text-p-md-body text-neutral-600">
             {currentAdultsNumber}
@@ -86,7 +86,7 @@ export function PassengersSelector({
             onClick={increasAdults}
             disabled={currentAdultsNumber === 8}
           >
-            <span>+</span>
+            <span className="relative top-[-1px]">+</span>
           </button>
         </div>
       </div>
@@ -106,7 +106,7 @@ export function PassengersSelector({
             onClick={reduceChildren}
             disabled={currentChildrenNumber === 0}
           >
-            <span>-</span>
+            <span className="relative top-[-1px]">-</span>
           </button>
           <span className="text-p-md-body text-neutral-600">
             {currentChildrenNumber}
@@ -121,7 +121,7 @@ export function PassengersSelector({
             onClick={increaseChildren}
             disabled={currentChildrenNumber === 8}
           >
-            <span>+</span>
+            <span className="relative top-[-1px]">+</span>
           </button>
         </div>
       </div>

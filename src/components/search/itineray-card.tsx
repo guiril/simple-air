@@ -95,7 +95,7 @@ export default function ItineraryCard() {
           <span className="mb-6 text-p-sm-r text-neutral-500">來回價格</span>
           <button
             type="button"
-            className="w-full py-3 text-p-md-sb-btn text-neutral-0 bg-primary-700 rounded-lg"
+            className="w-full py-3 text-p-md-sb-btn text-neutral-0 bg-primary-700 rounded-lg hover:bg-primary-500"
           >
             選擇航班
           </button>
