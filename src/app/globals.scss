@@ -3,3 +3,15 @@
 @import 'tailwindcss/utilities';
 
 @import './rc-slider-custom.scss';
+
+.hidden-luggage {
+  @media (max-width: 1260px) {
+    display: none;
+  }
+}
+
+.hidden-flight-time {
+  @media (max-width: 1175px) {
+    display: none;
+  }
+}

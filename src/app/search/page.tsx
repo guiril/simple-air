@@ -6,125 +6,16 @@ import { stopHashHrefNavigation } from '@/utils';
 
 import Slider from 'rc-slider';
 
-import Image from 'next/image';
 import Header from '@/components/header';
-import SearchBar from '@/components/search-bar/search-bar';
+import SearchBar from '@/components/search/search-bar';
 import Footer from '@/layouts/footer';
-
-import FilterTitle from '@/components/filter/filter-title';
-import TimeSlider from '@/components/filter/time-slider';
-import ToggleSwitch from '@/components/filter/toggle-switch';
-import Checkbox from '@/components/filter/checkbox';
-import FilterDividingLine from '@/components/filter/dividing-line';
-
-const OneWayOfItinerary = ({
-  departureTime,
-  arrivalTime,
-  departureLocation,
-  destination
-}: {
-  departureTime: string;
-  arrivalTime: string;
-  departureLocation: string;
-  destination: string;
-}) => {
-  return (
-    <div className="flex justify-between h-12">
-      <div className="flex flex-col basis-[160px]">
-        <div className="flex items-center mb-1 text-title-md-sb text-neutral-600">
-          <span>{departureTime}</span>
-          <span className="mx-2">~</span>
-          <div className="relative">
-            <span>{arrivalTime}</span>
-            <span className="absolute top-0 right-[-24px] text-[12px] font-medium leading-none tracking-normal text-[#FF385C]">
-              +1d
-            </span>
-          </div>
-        </div>
-        <div className="flex items-center text-p-xs text-neutral-500">
-          <span>{departureLocation}</span>
-          <span className="mx-1">-</span>
-          <span>{destination}</span>
-        </div>
-      </div>
-      <div className="flex flex-col basis-[99px]">
-        <span className="mb-2 text-p-sm-sb text-neutral-600">
-          14 小時 10 分鐘
-        </span>
-        <span className="text-p-xs text-warning-600">直飛</span>
-      </div>
-      <div className="flex justify-end items-start self-center">
-        <Image
-          src="/images/icons/checked-luggage.svg"
-          alt="checked luggage"
-          width={20}
-          height={20}
-          className="mr-3"
-        />
-        <Image
-          src="/images/icons/carry-on-luggage.svg"
-          alt="carry-on luggage"
-          width={20}
-          height={20}
-        />
-      </div>
-    </div>
-  );
-};
-
-const ItineraryCard = () => {
-  return (
-    <li className="grid grid-cols-[1fr_246px] border border-neutral-700/[.12] rounded-xl">
-      <div
-        className="relative grid grid-cols-[84px_1fr] gap-8 pt-9 pr-[60px] pb-8 pl-6
-          before:absolute before:top-0 before:right-0 before:bottom-0 before:left-0
-          before:border-r before:border-dashed before:border-neutral-400"
-      >
-        <Image
-          src="/images/airlines/logos/eva.svg"
-          alt="EVA AIR"
-          width={84}
-          height={48}
-          className="self-center"
-        />
-        <div className="flex flex-col justify-between">
-          <OneWayOfItinerary
-            departureTime={'23:40'}
-            arrivalTime={'07:50'}
-            departureLocation={'TPE'}
-            destination={'CDG'}
-          />
-          <OneWayOfItinerary
-            departureTime={'11:20'}
-            arrivalTime={'07:10'}
-            departureLocation={'CDG'}
-            destination={'TPE'}
-          />
-        </div>
-      </div>
-      <div className="flex justify-center items-center py-9">
-        <div className="flex flex-col items-start mr-6">
-          <span className="text-[24px] font-semibold leading-[1.35em] tracking-[0.02em] text-neutral-700">
-            NT$50,342
-          </span>
-          <span className="mb-6 text-p-sm-r text-neutral-500">來回價格</span>
-          <button
-            type="button"
-            className="w-full py-3 text-p-md-sb-btn text-neutral-0 bg-primary-700 rounded-lg"
-          >
-            選擇航班
-          </button>
-        </div>
-        <Image
-          src="/images/icons/ticket-down-arrow.svg"
-          alt="arrow"
-          width={28}
-          height={28}
-        />
-      </div>
-    </li>
-  );
-};
+import FilterTitle from '@/components/search/filter/filter-title';
+import TimeSlider from '@/components/search/filter/time-slider';
+import ToggleSwitch from '@/components/search/filter/toggle-switch';
+import Checkbox from '@/components/search/filter/checkbox';
+import FilterDividingLine from '@/components/search/filter/dividing-line';
+import SortBar from '@/components/search/sort-bar';
+import ItineraryCard from '@/components/search/itineray-card';
 
 export default function SearchPage() {
   const searchParams = useSearchParams();
@@ -654,71 +545,17 @@ export default function SearchPage() {
             </div>
           </li>
         </ul>
-        <div className="grow shrink-0">
-          <ul className="flex items-start mb-6 bg-neutral-0 border border-neutral-700/[.12] rounded-lg">
-            <li
-              className="relative py-6 pl-4 grow basis-0 cursor-pointer rounded-lg
-                before:absolute before:h-[2px] before:right-0 before:bottom-[-1px] before:left-[3px] before:bg-primary-700"
-            >
-              <div className="flex items-center mb-1">
-                <span className="mr-1 text-p-md-sb text-primary-700">
-                  最佳推薦
-                </span>
-                <Image
-                  src="/images/icons/info.svg"
-                  alt="info"
-                  width={20}
-                  height={20}
-                />
-              </div>
-              <div className="text-primary-700">
-                <span className="text-p-sm-sb">NT$50,342</span>
-                <span className="mx-2 text-p-md-sb">·</span>
-                <span className="text-p-sm-sb">14 小時 18 分鐘</span>
-              </div>
-            </li>
-            <li className="py-6 pl-4 grow basis-0 cursor-pointer">
-              <div className="flex items-center mb-1">
-                <span className="mr-1 text-p-md-sb text-neutral-600">
-                  最便宜
-                </span>
-              </div>
-              <div className="text-neutral-500">
-                <span className="text-p-sm-r">NT$37,298</span>
-                <span className="mx-2 text-p-sm-r">·</span>
-                <span className="text-p-sm-r">36 小時 40 分鐘</span>
-              </div>
-            </li>
-            <li className="py-6 pl-4 grow basis-0 cursor-pointer">
-              <div className="flex items-center mb-1">
-                <span className="text-p-md-sb text-neutral-600">最快</span>
-              </div>
-              <div className="text-neutral-500">
-                <span className="text-p-sm-r">NT$54,599</span>
-                <span className="mx-2 text-p-sm-r">·</span>
-                <span className="text-p-sm-r">13 小時 40 分鐘</span>
-              </div>
-            </li>
-            <li className="py-6 px-4 grow basis-0 cursor-pointer">
-              <div className="flex justify-between items-center">
-                <div className="flex flex-col items-start">
-                  <span className="mb-1 text-p-md-sb text-neutral-600">
-                    其他排序
-                  </span>
-                  <span className="text-p-sm-r text-neutral-500">最早出發</span>
-                </div>
-                <Image
-                  src="/images/icons/ticket-down-arrow.svg"
-                  alt="arrow"
-                  width={28}
-                  height={28}
-                />
-              </div>
-            </li>
-          </ul>
-          <ul>
+        <div className="grow shrink">
+          <SortBar />
+          <ul className="mb-6">
             <ItineraryCard />
           </ul>
+          <button
+            type="button"
+            className="w-full py-3 text-p-md-sb-btn text-primary-500 bg-primary-50 rounded-lg"
+          >
+            顯示更多結果
+          </button>
         </div>
       </div>
       <Footer />
