@@ -81,11 +81,12 @@ export default function SearchPage() {
     e: React.ChangeEvent<HTMLInputElement>
   ) => {
     let stops = [...stopNumber];
+
     const isChecked = e.target.checked;
     const stop = Number(e.target.value);
     const index = stops.findIndex((el) => el === stop);
 
-    if (isChecked && index !== -1) {
+    if (isChecked && index === -1) {
       stops = [...stopNumber, stop];
     } else {
       stops.splice(index, 1);
