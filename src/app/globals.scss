@@ -8,10 +8,31 @@
   @media (max-width: 1260px) {
     display: none;
   }
+  @media (max-width: theme('screens.md.max')) {
+    display: flex;
+  }
+  @media (max-width: 870px) {
+    display: none;
+  }
+  @media (max-width: theme('screens.sm.max')) {
+    display: flex;
+  }
+  @media (max-width: 705px) {
+    display: none;
+  }
 }
 
 .hidden-flight-time {
   @media (max-width: 1175px) {
     display: none;
+  }
+  @media (max-width: theme('screens.md.max')) {
+    display: flex;
+  }
+  @media (max-width: 790px) {
+    display: none;
+  }
+  @media (max-width: theme('screens.sm.max')) {
+    display: flex;
   }
 }

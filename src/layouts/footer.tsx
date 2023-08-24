@@ -171,8 +171,7 @@ export default function Footer() {
           text-p-xs text-neutral-400 sm:justify-center"
       >
         <small className="sm:hidden">
-          Data provided by RapidAPI and Skyscanner. Strictly for personal
-          learning purposes, no commercial use.
+          Strictly for personal learning purposes, no commercial use.
         </small>
         <small>
           Copyright © 2023 YA-JHAO CHEN. All rights reserved. Site design by

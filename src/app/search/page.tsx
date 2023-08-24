@@ -164,8 +164,8 @@ export default function SearchPage() {
           <SearchBar />
         </div>
       </div>
-      <div className="container flex justify-between py-[60px]">
-        <ul className="basis-[344px] shrink-0 mr-8 px-3">
+      <div className="container flex justify-between py-[60px] md:py-8 xs:py-7">
+        <ul className="basis-[344px] shrink-0 mr-8 px-3 md:hidden">
           <li className="relative">
             <FilterTitle
               title={'轉機'}
@@ -548,12 +548,12 @@ export default function SearchPage() {
         </ul>
         <div className="grow shrink">
           <SortBar />
-          <ul className="mb-6">
+          <ul className="mb-6 sm:mb-5 xs:mb-4">
             <ItineraryCard />
           </ul>
           <button
             type="button"
-            className="w-full py-3 text-p-md-sb-btn text-primary-500 bg-primary-50 rounded-lg hover:bg-primary-100"
+            className="w-full py-3 text-p-md-sb-btn text-primary-500 bg-primary-50 rounded-lg hover:bg-primary-100 xs:text-p-sm-md"
           >
             顯示更多結果
           </button>
