@@ -24,28 +24,27 @@ export default function HomeSection({
             <h2 className="mb-1 text-h2 text-neutral-600">{title}</h2>
             <p className="text-p-md-body text-neutral-500">{description}</p>
           </div>
-          {isMoreButton ? (
+          {isMoreButton && (
             <button
               type="button"
-              className="py-3 px-5 text-p-md-sb leading-[1.5em] text-primary-500 bg-primary-50 rounded-lg sm:hidden"
+              className="py-3 px-5 text-p-md-sb-btn text-primary-500 bg-primary-50 rounded-lg
+              hover:bg-primary-100 active:bg-primary-100
+                sm:hidden"
             >
               了解更多
             </button>
-          ) : (
-            ''
           )}
         </div>
         {children}
-        {isMoreButton ? (
+        {isMoreButton && (
           <button
             type="button"
-            className="w-full py-4 mt-7 text-p-md-sb leading-[1.5em] text-primary-500 bg-primary-50 rounded-lg hidden
-            sm:block"
+            className="hidden w-full py-4 mt-7 text-p-md-sb-btn text-primary-500 bg-primary-50 rounded-lg
+            hover:bg-primary-100 active:bg-primary-100
+              sm:block"
           >
             了解更多
           </button>
-        ) : (
-          ''
         )}
       </div>
     </section>

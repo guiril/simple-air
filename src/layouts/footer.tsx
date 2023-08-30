@@ -89,7 +89,7 @@ export default function Footer() {
                 />
                 <button
                   type="button"
-                  className="py-3 px-5 text-p-md-sb text-primary-500 bg-primary-50 rounded-lg"
+                  className="py-3 px-5 text-p-md-sb text-primary-500 bg-primary-50 rounded-lg hover:bg-primary-100 active:bg-primary-100"
                 >
                   訂閱
                 </button>
