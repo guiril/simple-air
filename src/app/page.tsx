@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import { Suspense } from 'react';
 
 import Header from '@/components/header';
 import SearchBar from '@/components/search/search-bar';
@@ -76,7 +77,9 @@ export default function Home() {
                 輕鬆輸入、快速比價 ─ 掌握最划算的航空選擇
               </p>
             </div>
-            <SearchBar />
+            <Suspense fallback={<div>Loading...</div>}>
+              <SearchBar />
+            </Suspense>
           </div>
         </div>
       </div>
