@@ -137,7 +137,7 @@ export default function SearchPage() {
       <div className="bg-[url('/images/hero/search.png')] bg-cover bg-center">
         <div className="container min-h-[282px] flex flex-col justify-between pb-6">
           <Header isBlackLogo={false} />
-          <Suspense fallback={<div>Loading...</div>}>
+          <Suspense fallback={<></>}>
             <SearchBar />
           </Suspense>
         </div>

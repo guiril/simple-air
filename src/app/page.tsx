@@ -77,7 +77,7 @@ export default function Home() {
                 輕鬆輸入、快速比價 ─ 掌握最划算的航空選擇
               </p>
             </div>
-            <Suspense fallback={<div>Loading...</div>}>
+            <Suspense fallback={<></>}>
               <SearchBar />
             </Suspense>
           </div>
