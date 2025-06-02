@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import Link from 'next/link';
 
 const Button = ({
   iconSrc,
@@ -33,7 +34,7 @@ export default function Header({ isBlackLogo }: { isBlackLogo: boolean }) {
   return (
     <header className="h-[88px] flex justify-between items-center sm:h-[80px]">
       <div className="w-[124px] h-[24px]">
-        <a
+        <Link
           href="/"
           className={`block w-full h-full bg-no-repeat ${
             isBlackLogo
@@ -42,7 +43,7 @@ export default function Header({ isBlackLogo }: { isBlackLogo: boolean }) {
           }`}
         >
           <span className="sr-only">Simple Air</span>
-        </a>
+        </Link>
       </div>
       <ul className="flex justify-start items-center">
         <li className="mr-[16px] sm:mr-0">
