@@ -2,8 +2,6 @@
 @use 'tailwindcss/components';
 @use 'tailwindcss/utilities';
 
-@use './rc-slider-custom.scss' as slider;
-
 .hidden-luggage {
   @media (max-width: 1260px) {
     display: none;

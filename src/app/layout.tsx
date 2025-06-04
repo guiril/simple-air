@@ -1,6 +1,8 @@
-import './globals.scss';
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
+
+import '@/styles/global.scss';
+import '@/styles/vendors/rc-slider-custom.scss';
 
 const inter = Inter({ subsets: ['latin'] });
 
