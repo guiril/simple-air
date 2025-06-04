@@ -1,12 +1,12 @@
 import Image from 'next/image';
 import { Suspense } from 'react';
 
-import Header from '@/components/header';
+import Header from '@/components/layout/header';
 import SearchBar from '@/components/search/search-bar';
 import HomeSection from '@/components/home-section';
 import LargeCard from '@/components/large-card';
 import AirlinesTab from '@/components/airlinesTab';
-import Footer from '@/components/footer';
+import Footer from '@/components/layout/footer';
 
 import { asiaItems, europeItems, itineraries } from '@/data';
 

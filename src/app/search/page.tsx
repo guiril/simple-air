@@ -5,9 +5,9 @@ import { stopHashHrefNavigation } from '@/utils';
 
 import Slider from 'rc-slider';
 
-import Header from '@/components/header';
+import Header from '@/components/layout/header';
 import SearchBar from '@/components/search/search-bar';
-import Footer from '@/components/footer';
+import Footer from '@/components/layout/footer';
 import FilterTitle from '@/components/search/filter/filter-title';
 import TimeSlider from '@/components/search/filter/time-slider';
 import ToggleSwitch from '@/components/search/filter/toggle-switch';
