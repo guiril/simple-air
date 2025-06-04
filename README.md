@@ -8,6 +8,10 @@ Uses Next.js to implement an interactive  flight search site (without APIs yet).
 - Responsive design using **Tailwind CSS**
 - Type checking with **TypeScript**
 
+## Project Structure
+
+- `src/styles` holds global and component SCSS files
+
 ## Additional Packages
 
 - [rc-slider](https://www.npmjs.com/package/rc-slider) for range slider in filter
