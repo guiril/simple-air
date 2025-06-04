@@ -3,9 +3,9 @@ import { Suspense } from 'react';
 
 import Header from '@/components/layout/header';
 import SearchBar from '@/components/search/search-bar';
-import HomeSection from '@/components/home-section';
-import LargeCard from '@/components/large-card';
-import AirlinesTab from '@/components/airlinesTab';
+import HomeSection from '@/components/home/home-section';
+import LargeCard from '@/components/home/large-card';
+import AirlinesTab from '@/components/home/airlinesTab';
 import Footer from '@/components/layout/footer';
 
 import { asiaItems, europeItems, itineraries } from '@/data';
