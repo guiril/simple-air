@@ -1,3 +1,5 @@
+'use client';
+
 import HeaderLogo from './HeaderLogo';
 import HeaderButton from './HeaderButton';
 
@@ -11,10 +13,20 @@ export default function Header({ isDarkLogo }: HeaderProps) {
       <HeaderLogo isDarkLogo={isDarkLogo} />
       <ul className="flex justify-start items-center">
         <li className="mr-[16px] sm:mr-0">
-          <HeaderButton iconSrc="flag-tw" iconAlt="TW" title="TWD" />
+          <HeaderButton
+            iconSrc="flag-tw"
+            iconAlt="TW"
+            title="TWD"
+            onClick={() => {}}
+          />
         </li>
         <li className="sm:hidden">
-          <HeaderButton iconSrc="customer" iconAlt="contact" title="聯繫我們" />
+          <HeaderButton
+            iconSrc="customer"
+            iconAlt="contact"
+            title="聯繫我們"
+            onClick={() => {}}
+          />
         </li>
       </ul>
     </header>
