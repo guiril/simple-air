@@ -13,7 +13,10 @@ export default function HeaderLogo({ isDarkLogo }: HeaderLogoProps) {
     <div className="w-[124px] h-[24px]">
       <Link
         href="/"
-        className={`block w-full h-full bg-no-repeat bg-[url(/images/logos/${logoUrl})]`}
+        className="block w-full h-full bg-no-repeat bg-contain"
+        style={{
+          backgroundImage: `url(/images/logos/${logoUrl})`
+        }}
       >
         <span className="sr-only">{SITE_NAME}</span>
       </Link>
