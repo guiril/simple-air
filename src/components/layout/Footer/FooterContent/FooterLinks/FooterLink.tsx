@@ -1,5 +1,5 @@
 import { stopHashHrefNavigation } from '@/utils';
-import FooterTitle from '@/components/layout/Footer/FooterTitle';
+import FooterTitle from '@/components/layout/Footer/FooterContent/FooterTitle';
 
 interface FooterLinkProps {
   title: string;
