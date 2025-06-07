@@ -49,8 +49,9 @@ export default function FooterSocial() {
               <Image
                 src="/images/application/app-store.svg"
                 alt="app store"
-                width={116}
-                height={40}
+                width="116"
+                height="40"
+                className="w-[116px] h-[40px]"
               />
             </a>
           </li>
@@ -59,8 +60,9 @@ export default function FooterSocial() {
               <Image
                 src="/images/application/google-play.svg"
                 alt="google play"
-                width={134}
-                height={40}
+                width="134"
+                height="40"
+                className="w-[134px] h-[40px]"
               />
             </a>
           </li>
