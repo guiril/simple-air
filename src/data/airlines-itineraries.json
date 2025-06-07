@@ -1,0 +1,36 @@
+{
+  "data": [
+    {
+      "imgTitle": "osaka",
+      "fromPlace": "台北",
+      "toPlace": "大阪",
+      "period": "8月30日 (三) - 9月6日 (三)",
+      "cabin": "經濟艙",
+      "price": "14,537"
+    },
+    {
+      "imgTitle": "tokyo",
+      "fromPlace": "台北",
+      "toPlace": "東京",
+      "period": "8月30日 (三) - 9月6日 (三)",
+      "cabin": "經濟艙",
+      "price": "16,538"
+    },
+    {
+      "imgTitle": "bangkok",
+      "fromPlace": "台北",
+      "toPlace": "曼谷",
+      "period": "8月30日 (三) - 9月6日 (三)",
+      "cabin": "經濟艙",
+      "price": "10,144"
+    },
+    {
+      "imgTitle": "macau",
+      "fromPlace": "台北",
+      "toPlace": "澳門",
+      "period": "8月30日 (三) - 9月6日 (三)",
+      "cabin": "經濟艙",
+      "price": "5,949"
+    }
+  ]
+}

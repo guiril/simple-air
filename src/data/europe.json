@@ -1,0 +1,20 @@
+{
+  "data": [
+    {
+      "imgTitle": "europe/rome",
+      "location": "羅馬 . 義大利",
+      "price": "40,801"
+    },
+    {
+      "imgTitle": "europe/prague",
+      "location": "布拉格 . 捷克",
+      "price": "36,868"
+    },
+    {
+      "labelText": "超夯",
+      "imgTitle": "europe/paris",
+      "location": "巴黎 . 法國",
+      "price": "39,895"
+    }
+  ]
+}

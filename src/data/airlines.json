@@ -1,0 +1,44 @@
+{
+  "data": [
+    {
+      "iata": "br",
+      "title": "長榮航空"
+    },
+    {
+      "iata": "ci",
+      "title": "中華航空"
+    },
+    {
+      "iata": "jl",
+      "title": "日本航空"
+    },
+    {
+      "iata": "jx",
+      "title": "星宇航空"
+    },
+    {
+      "iata": "7c",
+      "title": "濟州航空"
+    },
+    {
+      "iata": "mm",
+      "title": "樂桃航空"
+    },
+    {
+      "iata": "3k",
+      "title": "捷星航空"
+    },
+    {
+      "iata": "5j",
+      "title": "宿霧太平洋航空"
+    },
+    {
+      "iata": "tg",
+      "title": "泰國航空"
+    },
+    {
+      "iata": "ae",
+      "title": "華信航空"
+    }
+  ]
+}
