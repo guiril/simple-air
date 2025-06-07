@@ -5,7 +5,7 @@ import { stopHashHrefNavigation } from '@/utils';
 
 import Slider from 'rc-slider';
 
-import Header from '@/components/layout/Header';
+import Header from '@/components/layout/header';
 import SearchBar from '@/components/search/search-bar';
 import Footer from '@/components/layout/Footer';
 import FilterTitle from '@/components/search/filter/filter-title';
