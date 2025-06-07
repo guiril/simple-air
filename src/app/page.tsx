@@ -6,7 +6,7 @@ import SearchBar from '@/components/search/search-bar';
 import HomeSection from '@/components/home/home-section';
 import LargeCard from '@/components/home/large-card';
 import AirlinesTab from '@/components/home/airlinesTab';
-import Footer from '@/components/layout/footer';
+import Footer from '@/components/layout/Footer';
 
 import { asiaItems, europeItems, itineraries } from '@/data';
 
