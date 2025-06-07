@@ -1,6 +1,5 @@
 import Link from 'next/link';
-
-const SITE_NAME = 'Simple Air';
+import { SITE_NAME } from '@/constants/base-info';
 
 interface HeaderLogoProps {
   isDarkLogo: boolean;
