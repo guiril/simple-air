@@ -9,7 +9,7 @@ import airlinesItineraries from '@/data/airlines-itineraries.json';
 
 import HeroSection from '@/components/home/HeroSection';
 import SectionHeader from '@/components/home/SectionHeader';
-import ItineraryCard from '@/components/home/ItineraryCard';
+import ItineraryCards from '@/components/home/ItineraryCards';
 import DiscountBanner from '@/components/home/DiscountBanner';
 import Tab from '@/components/home/Tab';
 import AirlineCard from '@/components/home/AirlineCard';
@@ -40,7 +40,7 @@ export default function Home() {
             label="獨家限量"
             description="只有在 Simple Air 才能買到的限量來回機票，數量有限！"
           />
-          <ItineraryCard products={asia.data} />
+          <ItineraryCards products={asia.data} />
         </div>
       </section>
       <section className="py-20 bg-neutral-0 md:py-[60px] sm:py-12">
@@ -50,7 +50,7 @@ export default function Home() {
             label="全網最齊全"
             description="提供最多航空公司航線、最划算的價格、最齊全的航班資訊！"
           />
-          <ItineraryCard products={europe.data} />
+          <ItineraryCards products={europe.data} />
         </div>
       </section>
       <DiscountBanner />
