@@ -1,20 +1,25 @@
 import Image from 'next/image';
 
-export default function FilterTitle({
+interface FilterHeaderProps {
+  title: string;
+  description?: string;
+  isFilterOpen: boolean;
+  onClick: () => void;
+}
+
+export default function FilterHeader({
   title,
   description,
-  isShowingFilter,
-  onFilterTitleClick
-}: {
-  title: string;
-  description: string | null;
-  isShowingFilter: boolean;
-  onFilterTitleClick: () => void;
-}) {
+  isFilterOpen,
+  onClick
+}: FilterHeaderProps) {
+  const handleClick = () => {
+    onClick();
+  };
   return (
     <div
       className="flex justify-between items-center py-[22px] cursor-pointer"
-      onClick={onFilterTitleClick}
+      onClick={handleClick}
     >
       <div className="flex items-center">
         <span className="text-p-md-sb text-neutral-700">{title}</span>
@@ -24,7 +29,7 @@ export default function FilterTitle({
       </div>
       <Image
         src={
-          isShowingFilter
+          isFilterOpen
             ? '/images/icons/filter-up-arrow.svg'
             : '/images/icons/filter-down-arrow.svg'
         }

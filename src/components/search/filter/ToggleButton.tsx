@@ -1,24 +1,28 @@
-export default function ToggleSwitch({
-  id,
-  title,
-  checked,
-  onSwitchChanged
-}: {
+import { useState } from 'react';
+
+interface ToggleButtonProps {
   id: string;
-  title: string;
-  checked: boolean;
-  onSwitchChanged: () => void;
-}) {
+  labelText: string;
+  isChecked: boolean;
+  onChange: () => void;
+}
+
+export default function ToggleButton({
+  id,
+  labelText,
+  isChecked,
+  onChange
+}: ToggleButtonProps) {
   return (
     <div className="flex justify-between items-center py-[7px]">
-      <span className="text-p-sm-r-2 text-neutral-500">{title}</span>
+      <span className="text-p-sm-r-2 text-neutral-500">{labelText}</span>
       <label htmlFor={id} className="relative w-12 h-6 cursor-pointer">
         <input
           type="checkbox"
           id={id}
           className="hidden peer"
-          checked={checked}
-          onChange={onSwitchChanged}
+          checked={isChecked}
+          onChange={onChange}
         />
         <span
           className="absolute top-0 right-0 bottom-0 left-0 bg-neutral-400 rounded-[100px] duration-300

@@ -1,20 +1,22 @@
 import { useState } from 'react';
 
-export default function Checkbox({
+interface FilterCheckboxProps {
+  id: string;
+  value: string;
+  labelText: string;
+  isChecked: boolean;
+  price?: string;
+  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
+}
+
+export default function FilterCheckbox({
   id,
   value,
-  title,
+  labelText,
+  isChecked,
   price,
-  checked,
-  onCheckboxChange
-}: {
-  id: string;
-  value: string | number;
-  title: string;
-  price: string | null;
-  checked: boolean;
-  onCheckboxChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-}) {
+  onChange
+}: FilterCheckboxProps) {
   return (
     <>
       <input
@@ -22,8 +24,8 @@ export default function Checkbox({
         id={id}
         className="hidden peer"
         value={value}
-        checked={checked}
-        onChange={onCheckboxChange}
+        checked={isChecked}
+        onChange={onChange}
       />
       <label
         htmlFor={id}
@@ -36,8 +38,8 @@ export default function Checkbox({
           peer-checked:before:border-primary-500 peer-checked:before:bg-primary-500
           peer-checked:after:opacity-100"
       >
-        <span className="text-p-sm-r">{title}</span>
-        {price && <span className="text-p-sm-r-2">NT${price} 起</span>}
+        <span className="text-p-sm-r">{labelText}</span>
+        {price && <span className="text-p-sm-r-2">{`NT${price} 起`}</span>}
       </label>
     </>
   );

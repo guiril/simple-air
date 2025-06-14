@@ -1,0 +1,14 @@
+{
+  "data": [
+    {
+      "id": "tpe",
+      "value": "tpe",
+      "labelText": "TPE 台北桃園機場"
+    },
+    {
+      "id": "tsa",
+      "value": "tsa",
+      "labelText": "TSA 台北松山機場"
+    }
+  ]
+}

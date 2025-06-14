@@ -1,0 +1,22 @@
+{
+  "data": [
+    {
+      "id": "nonStop",
+      "value": "0",
+      "labelText": "直飛 (16)",
+      "price": "50,599"
+    },
+    {
+      "id": "oneStop",
+      "value": "1",
+      "labelText": "轉機 1 次 (8)",
+      "price": "41,347"
+    },
+    {
+      "id": "twoStop",
+      "value": "2",
+      "labelText": "轉機 2 次 (4)",
+      "price": "40,298"
+    }
+  ]
+}

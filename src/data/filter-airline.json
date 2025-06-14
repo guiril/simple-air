@@ -1,0 +1,62 @@
+{
+  "alliance": [
+    {
+      "id": "valueAlliance",
+      "value": "value alliiance",
+      "title": "價值聯盟"
+    },
+    {
+      "id": "starAlliance",
+      "value": "star alliance",
+      "title": "天合聯盟"
+    },
+    {
+      "id": "skyTeam",
+      "value": "sky team",
+      "title": "星空聯盟"
+    },
+    {
+      "id": "oneworld",
+      "value": "oneworld",
+      "title": "寰宇一家"
+    }
+  ],
+  "airlines": [
+    {
+      "id": "starlux",
+      "value": "starlux",
+      "title": "星宇航空",
+      "price": "8,831"
+    },
+    {
+      "id": "chinaAirlines",
+      "value": "china airlines",
+      "title": "中華航空",
+      "price": "8,831"
+    },
+    {
+      "id": "tigerAirways",
+      "value": "tiger airways",
+      "title": "台灣虎航",
+      "price": "8,831"
+    },
+    {
+      "id": "cathay",
+      "value": "cathay",
+      "title": "國泰航空",
+      "price": "8,831"
+    },
+    {
+      "id": "scoot",
+      "value": "scoot",
+      "title": "酷航",
+      "price": "8,831"
+    },
+    {
+      "id": "evaAir",
+      "value": "eva air",
+      "title": "長榮航空",
+      "price": "8,831"
+    }
+  ]
+}
